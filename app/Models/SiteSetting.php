@@ -28,6 +28,7 @@ class SiteSetting extends Model
         'smtp_from_name',
         'contact_mail_to',
         'google_site_verification',
+        'google_tag_manager_id',
     ];
 
     protected $hidden = ['smtp_password'];

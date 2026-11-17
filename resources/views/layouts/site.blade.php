@@ -11,6 +11,14 @@
   @if (filled($googleSiteVerification))
     <meta name="google-site-verification" content="{{ $googleSiteVerification }}">
   @endif
+  @if (filled($settings?->google_tag_manager_id))
+    <script async src="https://www.googletagmanager.com/gtm.js?id={{ urlencode($settings->google_tag_manager_id) }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+  @endif
   <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v={{ filemtime(public_path('favicon.svg')) }}">
   <meta name="description" content="@yield('description', 'Profil akademik, karya, publikasi, bahan kuliah, dan kolaborasi Dede Husen, dosen Teknik Informatika Universitas Kuningan.')">
   <title>@yield('title', 'Dede Husen, M.Kom. | Akademik & Rekayasa Perangkat Lunak')</title>

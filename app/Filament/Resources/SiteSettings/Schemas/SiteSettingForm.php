@@ -33,6 +33,16 @@ class SiteSettingForm
                             ->label('Kode verifikasi situs')
                             ->maxLength(255),
                     ]),
+                Section::make('Google Tag Manager')
+                    ->description('Masukkan ID container Google Tag Manager. Skrip akan dimuat pada halaman situs setelah pengaturan disimpan.')
+                    ->schema([
+                        TextInput::make('google_tag_manager_id')
+                            ->label('ID container')
+                            ->placeholder('GTM-5SR46W97')
+                            ->helperText('Format: GTM- diikuti kode container, tanpa tag script.')
+                            ->maxLength(50)
+                            ->rules(['nullable', 'regex:/^GTM-[A-Z0-9]+$/']),
+                    ]),
                 Section::make('Email dan SMTP')
                     ->description('Dipakai untuk formulir kontak dan reset password. Simpan dulu, lalu uji pengiriman ke alamat admin. Password dienkripsi; kosongkan kolomnya untuk mempertahankan password tersimpan.')
                     ->columns(2)

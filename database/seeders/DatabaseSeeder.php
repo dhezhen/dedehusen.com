@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'hero_title' => 'Halo, saya Dede Husen.',
             'hero_description' => 'Saya dosen Teknik Informatika di Fakultas Ilmu Komputer, Universitas Kuningan. Melalui situs ini, saya berbagi informasi tentang kegiatan mengajar, riset, publikasi, karya, dan bahan kuliah.',
             'google_site_verification' => 'fl-YC0QLNU1SitF76E_ENvSr54ZCG9tHJH1p9GCe4Yo',
+            'google_tag_manager_id' => 'GTM-5SR46W97',
         ]);
     }
 }
