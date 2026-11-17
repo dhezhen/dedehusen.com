@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Auth\Pages\RequestPasswordReset;
 use App\Filament\Widgets\DashboardHighlights;
 use App\Filament\Widgets\SiteOverview;
 use App\Filament\Widgets\VisitsChart;
@@ -32,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.svg').'?v='.filemtime(public_path('favicon.svg')))
             ->theme(asset('css/filament/admin/theme.css').'?v='.filemtime(public_path('css/filament/admin/theme.css')))
             ->login()
-            ->passwordReset()
+            ->passwordReset(RequestPasswordReset::class)
             ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => [
