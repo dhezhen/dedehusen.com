@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('favicon.svg').'?v='.filemtime(public_path('favicon.svg')))
             ->theme(asset('css/filament/admin/theme.css').'?v='.filemtime(public_path('css/filament/admin/theme.css')))
             ->login()
+            ->passwordReset()
             ->sidebarCollapsibleOnDesktop()
             ->colors([
                 'primary' => [
