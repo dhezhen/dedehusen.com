@@ -89,6 +89,55 @@
     });
     document.querySelector('#current-year').textContent = new Date().getFullYear();
 
+    const articlesPage = document.querySelector('[data-articles-page]');
+    if (articlesPage) {
+      let articleRequestController;
+      const replaceArticleContent = async (url, updateHistory = true) => {
+        articleRequestController?.abort();
+        articleRequestController = new AbortController();
+        const controller = articleRequestController;
+        const status = articlesPage.querySelector('[data-article-filter-status]');
+        articlesPage.setAttribute('aria-busy', 'true');
+        if (status) status.hidden = false;
+
+        try {
+          const response = await fetch(url, {
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            signal: controller.signal
+          });
+          if (!response.ok) throw new Error('Artikel gagal dimuat.');
+
+          const page = new DOMParser().parseFromString(await response.text(), 'text/html');
+          const nextContent = page.querySelector('[data-article-content]');
+          const currentContent = articlesPage.querySelector('[data-article-content]');
+          if (!nextContent || !currentContent) throw new Error('Daftar artikel tidak ditemukan.');
+
+          currentContent.replaceWith(nextContent);
+          if (updateHistory) window.history.pushState({}, '', url);
+        } catch (error) {
+          if (error.name === 'AbortError') return;
+          throw error;
+        } finally {
+          if (articleRequestController === controller) {
+            articlesPage.removeAttribute('aria-busy');
+            if (status) status.hidden = true;
+          }
+        }
+      };
+
+      articlesPage.addEventListener('click', event => {
+        const link = event.target.closest('.blog-filters a[href], .pagination a[href]');
+        if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+        event.preventDefault();
+        replaceArticleContent(link.href).catch(() => window.location.assign(link.href));
+      });
+
+      window.addEventListener('popstate', () => {
+        replaceArticleContent(window.location.href, false).catch(() => window.location.reload());
+      });
+    }
+
     const blogFilters = [...document.querySelectorAll('[data-blog-filter]')];
     const blogCards = [...document.querySelectorAll('[data-blog-card]')];
     const blogEmptyCard = document.querySelector('.blog-empty-card');
