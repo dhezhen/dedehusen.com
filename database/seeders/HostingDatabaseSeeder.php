@@ -780,6 +780,7 @@ class HostingDatabaseSeeder extends Seeder
                 'color_dark_background' => '#0a111e',
                 'color_dark_text' => '#e5edf5',
                 'color_dark_accent' => '#43c0c8',
+                'google_site_verification' => 'fl-YC0QLNU1SitF76E_ENvSr54ZCG9tHJH1p9GCe4Yo',
             ],
         ],
         'contact_messages' => [

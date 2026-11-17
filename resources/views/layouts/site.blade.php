@@ -4,6 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#edf3f7">
+  @php
+    $googleSiteVerification = trim((string) ($settings?->google_site_verification ?? ''));
+    $googleSiteVerification = preg_replace('/^google-site-verification\s*=\s*/i', '', $googleSiteVerification);
+  @endphp
+  @if (filled($googleSiteVerification))
+    <meta name="google-site-verification" content="{{ $googleSiteVerification }}">
+  @endif
   <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}?v={{ filemtime(public_path('favicon.svg')) }}">
   <meta name="description" content="@yield('description', 'Profil akademik, karya, publikasi, bahan kuliah, dan kolaborasi Dede Husen, dosen Teknik Informatika Universitas Kuningan.')">
   <title>@yield('title', 'Dede Husen, M.Kom. | Akademik & Rekayasa Perangkat Lunak')</title>

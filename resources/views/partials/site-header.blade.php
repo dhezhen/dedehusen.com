@@ -1,6 +1,7 @@
 ﻿  <a class="skip-link" href="#main">Lewati navigasi</a>
   <div class="wrap site-header">
     <header class="nav-bar glass">
+      
       <a class="brand" href="/#home" aria-label="Dede Husen, beranda">  </span><span>Dede Husen</span><span class="brand-subtitle">Teknik Informatika</span></a>
       <nav class="nav-menu" aria-label="Navigasi utama">
         <a href="/" aria-current="page">Beranda</a>
