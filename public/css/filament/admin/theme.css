@@ -1,0 +1,436 @@
+@import url('../filament/app.css');
+
+:root {
+    --admin-page-surface: #f2f6fd;
+    --admin-glass-surface: rgb(255 255 255 / 86%);
+    --admin-glass-border: rgb(11 107 116 / 20%);
+    --admin-glass-shadow: 0 10px 28px rgb(7 95 102 / 8%);
+}
+
+.dark {
+    --admin-page-surface: #0b1424;
+    --admin-glass-surface: rgb(16 31 54 / 90%);
+    --admin-glass-border: rgb(67 192 200 / 24%);
+    --admin-glass-shadow: 0 12px 30px rgb(0 0 0 / 22%);
+}
+
+.fi-body {
+    background-color: var(--admin-page-surface);
+}
+
+.fi-topbar {
+    background-color: var(--admin-page-surface);
+    border-bottom: 1px solid var(--admin-glass-border);
+    box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Sidebar: distinct surface so it clearly separates from the page canvas.
+   Light  -> solid white panel on the tinted page background.
+   Dark   -> deeper panel than the page background.
+   --------------------------------------------------------------------------- */
+.fi-sidebar {
+    --sidebar-surface: #ffffff;
+    --sidebar-hover: #eef4fb;
+    --sidebar-border: rgb(11 107 116 / 16%);
+    --sidebar-shadow: 1px 0 0 rgb(15 23 42 / 6%), 4px 0 18px rgb(15 23 42 / 5%);
+    --sidebar-label: #334155;
+    --sidebar-heading: #64748b;
+    --sidebar-active-bg: #075f66;
+    --sidebar-active-text: #ffffff;
+
+    background-color: var(--sidebar-surface);
+    border-inline-end: 1px solid var(--sidebar-border);
+    box-shadow: var(--sidebar-shadow);
+}
+
+.dark .fi-sidebar {
+    --sidebar-surface: #060e1b;
+    --sidebar-hover: #122134;
+    --sidebar-border: rgb(67 192 200 / 22%);
+    --sidebar-shadow: 1px 0 0 rgb(0 0 0 / 45%), 4px 0 20px rgb(0 0 0 / 30%);
+    --sidebar-label: #cbd8e8;
+    --sidebar-heading: #93a8c2;
+    --sidebar-active-bg: #43c0c8;
+    --sidebar-active-text: #05262a;
+
+    background-color: var(--sidebar-surface);
+    border-inline-end: 1px solid var(--sidebar-border);
+    box-shadow: var(--sidebar-shadow);
+}
+
+/* Keep the sidebar header flush with the panel instead of the default white bar. */
+.fi-sidebar .fi-sidebar-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--sidebar-border);
+    box-shadow: none;
+}
+
+.fi-sidebar .fi-sidebar-group-label {
+    color: var(--sidebar-heading);
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-size: .7rem;
+}
+
+.fi-sidebar .fi-sidebar-item-btn {
+    border-radius: .55rem;
+    color: var(--sidebar-label);
+}
+
+.fi-sidebar .fi-sidebar-item-btn > .fi-sidebar-item-label {
+    color: var(--sidebar-label);
+    font-weight: 550;
+}
+
+.fi-sidebar .fi-sidebar-item-btn > .fi-icon {
+    color: var(--sidebar-label);
+}
+
+.fi-sidebar .fi-sidebar-item-btn:hover {
+    background-color: var(--sidebar-hover);
+}
+
+/* Active item: solid accent fill for maximum legibility. */
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    background-color: var(--sidebar-active-bg);
+    box-shadow: 0 1px 2px rgb(7 95 102 / 28%);
+}
+
+.dark .fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-btn {
+    box-shadow: 0 1px 3px rgb(0 0 0 / 45%);
+}
+
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-btn > .fi-sidebar-item-label {
+    color: var(--sidebar-active-text);
+    font-weight: 650;
+}
+
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-btn > .fi-icon {
+    color: var(--sidebar-active-text);
+}
+
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-btn:hover {
+    background-color: var(--sidebar-active-bg);
+    filter: brightness(1.08);
+}
+
+/* Active-state focus ring must stay visible on the solid fill. */
+.fi-sidebar .fi-sidebar-item.fi-active > .fi-sidebar-item-btn:focus-visible {
+    outline: 2px solid var(--sidebar-active-bg);
+    outline-offset: 2px;
+}
+
+.dashboard-visits-figure {
+    margin: 0;
+}
+
+.dashboard-visits-caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.dashboard-visits-svg {
+    display: block;
+    width: 100%;
+    height: 10.5rem;
+}
+
+.dashboard-visits-grid line {
+    stroke: rgb(100 116 139 / 20%);
+    stroke-width: 1;
+}
+
+.dashboard-visits-grid text,
+.dashboard-visits-labels text {
+    fill: #5f6b7a;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.dark .dashboard-visits-grid line {
+    stroke: rgb(148 163 184 / 22%);
+}
+
+.dark .dashboard-visits-grid text,
+.dark .dashboard-visits-labels text {
+    fill: #a8b6ca;
+}
+
+.dashboard-visits-line {
+    fill: none;
+    stroke: #075f66;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    vector-effect: non-scaling-stroke;
+}
+
+.dark .dashboard-visits-line {
+    stroke: #43c0c8;
+}
+
+.dashboard-visits-points circle {
+    fill: #fff;
+    stroke: #075f66;
+    stroke-width: 2.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.dark .dashboard-visits-points circle {
+    fill: #101f36;
+    stroke: #43c0c8;
+}
+
+.dashboard-visits-value-label {
+    fill: #075f66;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.dark .dashboard-visits-value-label {
+    fill: #66d5dc;
+}
+
+/* Glass is reserved for the dashboard chart and latest-updates panel. */
+.fi-page .fi-wi-chart .fi-section,
+.fi-page .dashboard-highlights-surface {
+    border: 1px solid var(--admin-glass-border);
+    border-radius: 1rem;
+    background-color: var(--admin-glass-surface);
+    box-shadow: var(--admin-glass-shadow);
+    -webkit-backdrop-filter: blur(16px) saturate(125%);
+    backdrop-filter: blur(16px) saturate(125%);
+}
+
+.dashboard-highlights-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+}
+
+.dashboard-highlights-column {
+    min-width: 0;
+}
+
+.dashboard-highlights-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-highlights-heading h3 {
+    margin: 0;
+    color: #0f172a;
+    font-size: .9rem;
+    font-weight: 650;
+}
+
+.dark .dashboard-highlights-heading h3 {
+    color: #f8fafc;
+}
+
+.dashboard-highlights-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .65rem 1rem;
+}
+
+.dashboard-highlights-actions a,
+.dashboard-highlights-heading > a {
+    color: #075f66;
+    font-size: .82rem;
+    font-weight: 600;
+    text-underline-offset: 3px;
+}
+
+.dashboard-highlights-actions a:hover,
+.dashboard-highlights-heading > a:hover {
+    text-decoration: underline;
+}
+
+.dark .dashboard-highlights-actions a,
+.dark .dashboard-highlights-heading > a {
+    color: #66d5dc;
+}
+
+.dashboard-highlights-actions a:focus-visible,
+.dashboard-highlights-heading > a:focus-visible,
+.dashboard-highlights-link:focus-visible {
+    border-radius: .25rem;
+    outline: 2px solid #075f66;
+    outline-offset: 3px;
+}
+
+.dark .dashboard-highlights-actions a:focus-visible,
+.dark .dashboard-highlights-heading > a:focus-visible,
+.dark .dashboard-highlights-link:focus-visible {
+    outline-color: #66d5dc;
+}
+
+.dashboard-highlights-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dashboard-highlights-list li {
+    border-top: 1px solid rgb(100 116 139 / 18%);
+    padding: .8rem 0;
+}
+
+.dashboard-highlights-list li:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.dashboard-highlights-list li:last-child {
+    padding-bottom: 0;
+}
+
+.dark .dashboard-highlights-list li {
+    border-color: rgb(148 163 184 / 18%);
+}
+
+.dashboard-highlights-link {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: .6rem 1rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+.dashboard-highlights-link:hover .dashboard-highlights-title {
+    color: #1d4ed8;
+}
+
+.dark .dashboard-highlights-link:hover .dashboard-highlights-title {
+    color: #93c5fd;
+}
+
+.dashboard-highlights-link-copy {
+    display: grid;
+    min-width: 0;
+    gap: .2rem;
+}
+
+.dashboard-highlights-meta,
+.dashboard-highlights-time {
+    color: #64748b;
+    font-size: .75rem;
+    line-height: 1.45;
+}
+
+.dark .dashboard-highlights-meta,
+.dark .dashboard-highlights-time {
+    color: #a8b6ca;
+}
+
+.dashboard-highlights-title {
+    overflow: hidden;
+    color: #0f172a;
+    font-size: .875rem;
+    font-weight: 550;
+    line-height: 1.4;
+    text-overflow: ellipsis;
+}
+
+.dark .dashboard-highlights-title {
+    color: #f8fafc;
+}
+
+.dashboard-highlights-time {
+    flex: 0 0 auto;
+    padding-top: .1rem;
+}
+
+.dashboard-highlights-message {
+    flex-wrap: wrap;
+}
+
+.dashboard-highlights-message-status {
+    flex: 0 0 auto;
+    font-size: .72rem;
+    font-weight: 600;
+}
+
+.dashboard-highlights-message-status.is-read {
+    color: #64748b;
+}
+
+.dashboard-highlights-message-status.is-unread {
+    color: #1d4ed8;
+}
+
+.dark .dashboard-highlights-message-status.is-read {
+    color: #a8b6ca;
+}
+
+.dark .dashboard-highlights-message-status.is-unread {
+    color: #93c5fd;
+}
+
+.dashboard-highlights-empty {
+    margin: 0;
+    border: 1px solid rgb(100 116 139 / 20%);
+    border-radius: .75rem;
+    padding: 1rem;
+    color: #475569;
+    font-size: .875rem;
+}
+
+.dashboard-highlights-empty p {
+    margin: 0;
+}
+
+.dashboard-highlights-empty .dashboard-highlights-actions {
+    margin-top: .9rem;
+}
+
+.dark .dashboard-highlights-empty {
+    border-color: rgb(148 163 184 / 20%);
+    color: #cbd5e1;
+}
+
+@media (min-width: 64rem) {
+    .dashboard-highlights-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 40rem) {
+    .dashboard-visits-svg {
+        height: 9rem;
+    }
+
+    .dashboard-highlights-message-status {
+        order: 3;
+        width: 100%;
+    }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .fi-page .fi-wi-chart .fi-section,
+    .fi-page .dashboard-highlights-surface {
+        background-color: #fff;
+    }
+
+    .dark .fi-page .fi-wi-chart .fi-section,
+    .dark .fi-page .dashboard-highlights-surface {
+        background-color: #101f36;
+    }
+}
